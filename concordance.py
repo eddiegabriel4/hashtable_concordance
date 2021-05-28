@@ -64,7 +64,8 @@ class Concordance:
                     if self.concordance_table.in_table(final[m]) == True:
                         temp = self.concordance_table.get_value(final[m])
                         if (i + 1) not in temp:
-                            new_val = temp.append(i + 1)
+                            temp.append(i + 1)
+                            self.concordance_table.insert(final[m], temp)
                     else:
                         self.concordance_table.insert(final[m], [i + 1])
 
