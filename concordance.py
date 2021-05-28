@@ -43,7 +43,6 @@ class Concordance:
                 datalines = dataf.readlines()
         except:
             raise FileNotFoundError
-        bad = []
         datalines_temp = datalines
         for i in range(0, len(datalines)):
             for j in datalines[i]:
@@ -53,11 +52,7 @@ class Concordance:
                     datalines_temp[i] = datalines_temp[i].replace(j, '')
                 if j == '-':
                     datalines_temp[i] = datalines_temp[i].replace(j, ' ')
-            counting = ' '.join(datalines_temp)
-            counting = counting.split()
-            for k in counting:
-                if self.stop_table.in_table(k) == True and k not in bad:
-                    bad.append(k)
+            bad = self.stop_table.get_all_keys()
             final = [' '.join([a for a in datalines2.split() if not a in bad]) for datalines2 in datalines_temp[i].split()]
             for m in range(0, len(final)):
                 if final[m] != '':

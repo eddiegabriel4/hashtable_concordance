@@ -151,3 +151,5 @@ class HashTable:
     def get_load_factor(self) -> float:
         """ Returns the load factor of the hash table (entries / table_size)."""
         return self.num_items / self.table_size
+
+
