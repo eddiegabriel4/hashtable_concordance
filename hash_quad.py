@@ -5,10 +5,10 @@ class info:
     def __init__(self, key, value):
         self.key = key
         self.value = value
-
+    """
     def __repr__(self):
         return 'info({0}, {1})'.format(self.key, self.value)
-
+    """
 class HashTable:
 
     def __init__(self, table_size: int):            # can add additional attributes
