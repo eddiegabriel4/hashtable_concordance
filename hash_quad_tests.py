@@ -2,7 +2,7 @@ import unittest
 from hash_quad import *
 
 class TestList(unittest.TestCase):
-
+    
     def test_01a(self) -> None:
         ht = HashTable(7)
         self.assertEqual(ht.get_table_size(), 7)
@@ -26,20 +26,20 @@ class TestList(unittest.TestCase):
     def test_01f(self) -> None:
         ht = HashTable(7)
         self.assertEqual(ht.get_value("cat"), None)
-
+    
     def test_01g(self) -> None:
         ht = HashTable(7)
         self.assertEqual(ht.get_index("cat"), None)
-
+    
     def test_01h(self) -> None:
         ht = HashTable(7)
         self.assertEqual(ht.horner_hash("cat"), 3)
-
+    
     def test_02a(self) -> None:
         ht = HashTable(7)
         ht.insert("cat", [5])
         self.assertEqual(ht.get_table_size(), 7)
-
+    
     def test_02b(self) -> None:
         ht = HashTable(7)
         ht.insert("cat", [5])
@@ -79,6 +79,8 @@ class TestList(unittest.TestCase):
     def test_04(self) -> None:
         ht = HashTable(7)
         ht.insert("cat", [5])
+        ht.insert("cat", [3])
+        self.assertEqual(ht.get_index("cat"), 3)
         self.assertEqual(ht.get_index("cat"), 3)
 
         ht.insert("dog", [8])
@@ -102,6 +104,6 @@ class TestList(unittest.TestCase):
         keys = ht.get_all_keys()
         keys.sort()
         self.assertEqual(keys, ["cat", "dog", "elephant", "mouse"])
-
+    
 if __name__ == '__main__':
    unittest.main()
