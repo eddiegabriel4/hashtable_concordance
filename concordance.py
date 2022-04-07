@@ -2,12 +2,13 @@ from typing import Any, List, Optional
 from hash_quad import *
 import string
 
+
 class Concordance:
 
     def __init__(self) -> None:
         """ Starting size of hash table should be 191: self.concordance_table = HashTable(191) """
-        self.stop_table: Optional[HashTable] = None          # hash table for stop words
-        self.concordance_table: HashTable = HashTable(191)              # hash table for concordance
+        self.stop_table: Optional[HashTable] = None  # hash table for stop words
+        self.concordance_table: HashTable = HashTable(191)  # hash table for concordance
 
     def load_stop_table(self, filename: str) -> None:
         """ Read stop words from input file (filename) and insert each word as a key into the stop words hash table.
@@ -25,9 +26,6 @@ class Concordance:
             filtered.append(x)
         for i in range(0, len(filtered)):
             self.stop_table.insert(filtered[i], [i])
-
-
-
 
     def load_concordance_table(self, filename: str) -> None:
         """ Read words from input text file (filename) and insert them into the concordance hash table, 
@@ -53,7 +51,8 @@ class Concordance:
                 if j == '-':
                     datalines_temp[i] = datalines_temp[i].replace(j, ' ')
             bad = self.stop_table.get_all_keys()
-            final = [' '.join([a for a in datalines2.split() if not a in bad]) for datalines2 in datalines_temp[i].split()]
+            final = [' '.join([a for a in datalines2.split() if not a in bad]) for datalines2 in
+                     datalines_temp[i].split()]
             for m in range(0, len(final)):
                 if final[m] != '':
                     if self.concordance_table.in_table(final[m]) == True:
@@ -76,7 +75,6 @@ class Concordance:
                     values = values + str(ok) + ' '
                 outall.write(str(keys[q] + ': ' + str(values)) + '\n')
             values2 = ''
-            for oki in self.concordance_table.get_value(keys[len(keys)-1]):
+            for oki in self.concordance_table.get_value(keys[len(keys) - 1]):
                 values2 = values2 + str(oki) + ' '
-            outall.write(str(keys[len(keys)-1]) + ': ' + str(values2))
-
+            outall.write(str(keys[len(keys) - 1]) + ': ' + str(values2))
